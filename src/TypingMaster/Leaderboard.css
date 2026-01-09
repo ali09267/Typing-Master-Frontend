@@ -1,0 +1,85 @@
+/* Leaderboard wrapper */
+.leaderboard-wrapper {
+  margin-top: 30px;
+  height: 100vh;
+  width: 75vw;
+  background: transparent;
+  padding: 20px;
+  overflow-x: auto; /* allow horizontal scroll if table is too wide */
+  border: 6px solid rgb(0, 255, 234);
+  border-radius: 12px;
+}
+
+/* Table styling */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+}
+
+.user-table th,
+.user-table td {
+  border: 2px solid #000000;
+  padding: 8px;
+  text-align: center;
+}
+
+.user-table th {
+  background-color: #040892;
+  font-weight: bold;
+  color: white;
+}
+
+.user-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+.user-table tr:nth-child(odd) {
+  background-color: #9550b0;
+  cursor: pointer;
+}
+
+.user-table tr:nth-child(even):hover,
+.user-table tr:nth-child(odd):hover {
+  background-color: #9dcedb;
+}
+
+.leaderboard-wrapper a {
+  font-size: 1rem;
+  text-decoration: none;
+  color: white;
+  width: 100px;
+  height: 20px;
+}
+
+/* MOBILE RESPONSIVE STYLES */
+@media (max-width: 500px) {
+  .leaderboard-wrapper {
+    width: 95vw; /* nearly full width */
+    padding: 10px;
+  }
+
+
+  .user-table th,
+  .user-table td {
+    padding: 4px; /* smaller padding */
+    font-size: 0.8rem; /* smaller font */
+  }
+
+  .user-table th {
+    font-size: 0.85rem;
+  }
+
+  h2 {
+    font-size: 1rem; /* smaller headings */
+  }
+
+  .leaderboard-wrapper a {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    width: 70px;
+    padding: auto;
+  }
+}

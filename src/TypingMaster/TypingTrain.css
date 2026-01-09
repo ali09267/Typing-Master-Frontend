@@ -1,0 +1,132 @@
+
+.TypingTrainWrapper{
+  position: fixed; /* Force full-screen overlay */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.scroll-container {
+  width: 100%;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center text horizontally */
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  border: 0px solid blue;
+
+}
+.para-train{
+  font-size: 25px;
+  color: white;
+}
+/* Animation to move text out to the left */
+@keyframes moveOutLeft {
+  0% {
+    transform: translateX(1000px); /* Center */
+  }
+  100% {
+    transform: translateX(-120%); /* Move completely out to the left */
+  }
+}
+
+input{
+   width: 40%;
+  padding: 12px;
+  font-size: 1.3rem;
+  border: 4px solid #ffffffc7;
+  border-radius: 8px;
+  min-width: 200px;
+
+  /*  Translucent background */
+  background-color: rgba(246, 245, 245,0.15); /* white with 20% opacity */
+
+  /* Optional for better look */
+  color: #020000f2;              /* Text color */
+  outline: none;
+  backdrop-filter: blur(4px);
+
+}
+.btn{
+  font-size: 25px;
+     display: inline-block;
+  border: none;
+  height: 10vh;
+  margin-top: 15px;
+  padding: 8px 16px;            
+  background-color: #33cfe3;   
+  color: white; 
+  border-radius: 4px;          
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: bold;
+  font-family: sans-serif;
+  text-align: center;
+  text-decoration: none;
+  margin: 20px;
+}
+.btn:hover{
+    background-color: #33cee3a8;
+}
+.go-back-train{
+  margin-top: 10px;
+   font-size: 25px;
+   display: inline-block;
+  padding: 9px 16px;            
+  background-color: #33cfe3;   
+  color: white;                
+  font-weight: bold;
+  font-family: sans-serif;
+  text-align: center;
+  text-decoration: none;      
+  border: none;
+  border-radius: 4px;          
+  cursor: pointer;
+  transition: background-color 0.2s;
+  height: 30px;
+  width:105px;
+}
+
+@media(max-width:400px){
+  .btn{
+    height: 6vh;
+    width: 30vw;
+    font-size: 15px;
+    font-weight: 300;
+    padding: 0px 0px;
+    text-align: center;
+    min-width: 80px;
+  }
+  .para-train{
+  font-size: 18px;
+  color: white;
+}
+.go-back-train{
+  font-size: 15px;
+  height: 20px;
+  width: 70px;
+  font-weight: 400;
+}
+}
+
+@media(max-width:300px){
+  .btn{
+    height: 6vh;
+    width: 30vw;
+    font-size: 15px;
+    font-weight: 300;
+    padding: 0px 0px;
+    text-align: center;
+    min-width: 80px;
+  }
+}

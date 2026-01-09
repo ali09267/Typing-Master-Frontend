@@ -1,0 +1,285 @@
+/* Full background */
+/* body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at top left, #6d22a7, #190548);
+    font-family: "Poppins", sans-serif;
+} */
+ html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+ .main-panel-wrapper{
+  margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at top left, #6d22a7, #190548);
+    font-family: "Poppins", sans-serif;
+ }
+.enter-name{
+     position: absolute;
+    top: 20px;       /* distance from the top */
+    right: 20px;      /* distance from the left */
+    
+}
+
+.leaderboard{
+     position: absolute;
+    top: 20px;       /* distance from the top */
+    left: 20px;      /* distance from the left */
+    width: 150px;
+}
+/* Grid for 4 buttons */
+.container {
+    width: 400px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+    /* border: 2px solid black; */
+}
+
+.players-dropdown {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid #fff;
+  border-radius: 12px;
+
+  color: white;
+  padding: 10px 15px;
+  font-size: 18px;
+  font-weight: bold;
+
+  cursor: pointer;
+  outline: none;
+
+  width: 300px;
+
+  transition: all 0.2s ease-in-out;
+}
+
+/* Hover effect */
+.players-dropdown:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #00eaff;
+}
+
+/* Dropdown arrow color fix */
+.players-dropdown option {
+  background: black;
+  color: white;
+  font-size: 16px;
+}
+
+
+/* Button style */
+.shape,.leaderboard,.enter-name {
+    padding: 18px 15px;
+    text-align: center;
+    background: linear-gradient(135deg, #b16aff, #7821a7);
+    color: white;
+    border-radius: 35px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.shape:hover,.enter-name:hover,.leaderboard:hover {
+    transform: scale(1.06);
+    opacity: 0.9;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  /* border: 1px solid navajowhite; */
+}
+
+.modal-box {
+  background: white;
+  width: 350px;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  color: black;
+}
+
+.modal-input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  /* border: 1px solid brown; */
+}
+
+.modal-submit {
+  padding: 8px 15px;
+  background: #6a0dad;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.modal-cancel {
+  padding: 8px 15px;
+  background: gray;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.free-fall-II {
+  grid-column: 1 / -1;   /* span across both columns */
+  justify-self: center; /* center the button itself */
+  width: 150px;         /* optional: keeps size nice */
+}
+
+.name-header{
+  color: rgba(0,0,0);
+}
+
+@media(max-width:700px){
+  .players-dropdown {
+    top: 100px;                
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    font-size: 16px;
+  }
+
+  .leaderboard {
+    top: 20px;
+    left: 10px;
+    width: 140px;
+  }
+
+  .enter-name {
+    top: 20px;
+    right: 10px;
+    width: 140px;
+  }
+
+  .container {
+    margin-top: 60px;         
+    width: 100%;
+  }
+}
+
+@media(max-width:500px){
+  .players-dropdown {
+    top: 100px;                
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    font-size: 16px;
+  }
+
+  .leaderboard {
+    top: 20px;
+    left: 10px;
+    width: 140px;
+  }
+
+  .enter-name {
+    top: 20px;
+    right: 10px;
+    width: 140px;
+  }
+
+  .container {
+    margin-top: 60px;         
+    width: 100%;
+  }
+}
+
+@media(max-width:390px){
+  .leaderboard {
+    top: 20px;
+    left: 10px;
+    width: 100px;
+        font-size: 1rem;
+  }
+
+  .enter-name {
+    top: 20px;
+    right: 10px;
+    width: 100px;
+        font-size: 1rem;
+  }
+
+  .container {
+    margin-top: 60px;         
+    width: 90%;
+  }
+  .shape{
+    width: 100px;
+    font-size: 1rem;
+    height: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+
+  @media(max-width:300px){
+  .leaderboard {
+    top: 20px;
+    left: 10px;
+    width: 80px;
+        font-size: 0.8rem;
+  }
+
+  .enter-name {
+    top: 20px;
+    right: 10px;
+    width: 80px;
+        font-size: 0.8rem;
+  }
+
+  .container {
+    margin-top: 60px;         
+    width: 90%;
+  }
+  .shape{
+    width: 80px;
+    font-size: 1rem;
+    height: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+  }
+}
