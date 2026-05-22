@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import './TypingTrain.css';
+import { useRef } from "react";
+
 function TypingTrain({playerId,onBack}){
 
 const [totalTime, setTotalTime] = useState(29);//how much time you have(changes after levels)
