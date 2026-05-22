@@ -23,6 +23,7 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+
 .lane-debug {
   position: absolute;
   top: 0;
@@ -47,10 +48,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
+  font-size: 23px;
   animation: fall linear forwards;
   border-radius: 8px;
-  font-weight:600;
+  font-weight:550;
   font-family: monospace;
   color: black;
 }
@@ -62,16 +63,14 @@
   }
   100% {
     top: 100vh;
-   
   }
 }
 
  a{
-  font-size: 25px;
+  font-size: 20px;
    display: inline-block;
   padding: 9px 16px;            
   background-color: #33cfe3;   
-  font-weight: bold;
   font-family: sans-serif;
   text-align: center;
   text-decoration: none;      
@@ -79,31 +78,29 @@
   border-radius: 4px;          
   cursor: pointer;
   transition: background-color 0.2s;
-  height: 6.7vh;
   color: white;
 }
 
 .play_again_btn{
-  font-size: 25px;
-     display: inline-block;
+  font-size: 20px;
+     display: flex;
+     align-items: center;
   border: none;
-  height: 10vh;
   padding: 8px 16px;            
   background-color: #33cfe3;   
   color: white; 
   border-radius: 4px;          
   cursor: pointer;
   transition: background-color 0.2s;
-  font-weight: bold;
   font-family: sans-serif;
   text-align: center;
   text-decoration: none;
 }
 .button-wrapper{
-  width: 30vw;
+  width: 300px;
   display: flex;
+  align-items: center;
   justify-content: space-around;
-  height: 12vh;
 }
 a:hover,.play_again_btn:hover{
   background-color: #33cee3a8;
