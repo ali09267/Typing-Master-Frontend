@@ -5,7 +5,7 @@ import './Free-fall.css';
 import { useRef } from 'react';
 
 function FreeFall({ playerId ,onBack}) {
-
+const audioRef = useRef(null);
   useEffect(() => {
     const audio = new Audio("/free_fall.mp3"); // path from public
     audio.loop = true; // optional: loop forever
