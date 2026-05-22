@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import './Free-fall.css';
@@ -279,8 +279,8 @@ const reset=()=>{
                         : "You are not a human being....."}</h2> 
 
                         <div className="button-wrapper">
-                            <button onClick={onBack} className='go_back_2'>Go Back</button> 
-                           <button onClick={reset} className='play_again_btn_2'>Play Again</button> 
+                            <button onClick={onBack} className='go_back_2'>Back</button> 
+                           <button onClick={reset} className='play_again_btn_2'>Reset</button> 
                            </div> </>}
             </>
           )}
