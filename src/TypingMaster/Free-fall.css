@@ -1,5 +1,5 @@
 .FreeFallWrapper{
- position: fixed; /* 👈 Force full-screen overlay */
+ position: fixed; 
   top: 0;
   left: 0;
   width: 100vw;
@@ -13,7 +13,7 @@
 
 .FreeFallWrapper2{
   border: 2px solid blue;
- position: fixed; /* 👈 Force full-screen overlay */
+ position: fixed; 
   top: 0;
   left: 0;
   width: 100vw;
@@ -23,7 +23,6 @@
   background-repeat: no-repeat;
   background-position: center;
 }
-/* DEBUG LANES */
 .lane-debug {
   position: absolute;
   top: 0;
@@ -42,16 +41,16 @@
 .box {
   position: absolute;
   top: 0;
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   background-color: rgba(211, 211, 211, 0.648);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 22px;
   animation: fall linear forwards;
   border-radius: 8px;
-  font-weight:500;
+  font-weight:600;
   font-family: monospace;
   color: black;
 }
@@ -105,7 +104,6 @@
   display: flex;
   justify-content: space-around;
   height: 12vh;
-  border: 2px solid darkorchid;
 }
 a:hover,.play_again_btn:hover{
   background-color: #33cee3a8;
@@ -138,16 +136,6 @@ a:hover,.play_again_btn:hover{
   .button-wrapper{
     min-width: 270px;
   }
-  /* .play_again_btn{
-    margin-bottom: 20px;
-    font-size: 20px;
-    height: 8vh;
-  }
-  a{
-    margin-top: 15px;
-    font-size: 20px;
-    height: 4.8vh;
-  } */
 }
 
 @media(max-width:300px){
