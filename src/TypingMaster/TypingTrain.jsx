@@ -17,12 +17,15 @@ const [levelTimes, setLevelTimes] = useState([]);
 const [feedback, setFeedback] = useState(null);
   const [gameStarted, setGameStarted] = useState(false);
 
+        const audioRef = useRef(null);
+
     //Music code 
-  useEffect(()=>{
+ useEffect(()=>{
       const audio = new Audio("/train.mp3"); // path from public
       audio.loop = true; // optional: loop forever
   
        audio.currentTime = 2;
+          audioRef.current = audio;
       audio.play().catch((err) => {
         console.log("Autoplay prevented by browser:", err);
 
