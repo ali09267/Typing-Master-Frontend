@@ -1,5 +1,5 @@
 .FreeFallWrapper{
- position: fixed; /* 👈 Force full-screen overlay */
+ position: fixed; 
   top: 0;
   left: 0;
   width: 100vw;
@@ -13,7 +13,7 @@
 
 .FreeFallWrapper2{
   border: 2px solid blue;
- position: fixed; /* 👈 Force full-screen overlay */
+ position: fixed; 
   top: 0;
   left: 0;
   width: 100vw;
@@ -55,7 +55,12 @@
   font-family: monospace;
   color: black;
 }
-
+.score{
+  font-size: 25px;
+}
+.heart{
+  font-size: 20px;
+}
 @keyframes fall {
   0% {
     top: -60px;
@@ -67,22 +72,7 @@
   }
 }
 
- a{
-  font-size: 20px;
-   display: inline-block;
-  padding: 9px 16px;            
-  background-color: #33cfe3;   
-  font-family: sans-serif;
-  text-align: center;
-  text-decoration: none;      
-  border: none;
-  border-radius: 4px;          
-  cursor: pointer;
-  transition: background-color 0.2s;
-  color: white;
-}
-
-.play_again_btn{
+button {
   font-size: 20px;
      display: flex;
      align-items: center;
@@ -103,7 +93,7 @@
   align-items: center;
   justify-content: space-around;
 }
-a:hover,.play_again_btn:hover{
+button:hover{
   background-color: #33cee3a8;
 } 
 
