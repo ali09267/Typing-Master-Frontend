@@ -1,6 +1,6 @@
 
 .TypingTrainWrapper{
-  position: fixed; /* Force full-screen overlay */
+  position: fixed; 
   top: 0;
   left: 0;
   width: 100vw;
@@ -19,7 +19,7 @@
   height: 320px;
   display: flex;
   align-items: center;
-  justify-content: center; /* Center text horizontally */
+  justify-content: center; 
   flex-direction: column;
   overflow: hidden;
   position: relative;
@@ -30,13 +30,13 @@
   font-size: 25px;
   color: white;
 }
-/* Animation to move text out to the left */
+
 @keyframes moveOutLeft {
   0% {
-    transform: translateX(1000px); /* Center */
+    transform: translateX(1000px); 
   }
   100% {
-    transform: translateX(-120%); /* Move completely out to the left */
+    transform: translateX(-120%); 
   }
 }
 
@@ -48,14 +48,10 @@ input{
   border-radius: 8px;
   min-width: 200px;
 
-  /*  Translucent background */
-  background-color: rgba(246, 245, 245,0.15); /* white with 20% opacity */
-
-  /* Optional for better look */
-  color: #020000f2;              /* Text color */
+  background-color: rgba(246, 245, 245,0.15); 
+  color: #020000f2;              
   outline: none;
   backdrop-filter: blur(4px);
-
 }
 .btn{
   font-size: 25px;
@@ -78,7 +74,7 @@ input{
 .btn:hover{
     background-color: #33cee3a8;
 }
-.go-back-train{
+button{
   margin-top: 10px;
    font-size: 25px;
    display: inline-block;
