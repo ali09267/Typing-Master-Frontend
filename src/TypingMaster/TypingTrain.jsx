@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import './TypingTrain.css';
-function TypingTrain({playerId}){
+function TypingTrain({playerId,onBack}){
 
 const [totalTime, setTotalTime] = useState(29);//how much time you have(changes after levels)
 const [timeLeft, setTimeLeft] = useState(29);//how much time you have left(changes after every second)
 const [resetTimer, setResetTimer] = useState(0);//timer reset when component mounts/refreshes
 const [resetting, setResetting] = useState(false);
 const [roundStatus, setRoundStatus] = useState("playing");//playing(isTyping), win(isCorrect + isEnter), lost(!isCorrect + timeUp), wrong(!isCorect + isEnter)
-const [showResult, setShowResult] = useState(false);//if enter btn pressed then show result is true means time to tell whether sentence is right or wrong
+const [showResult, setShowResult] = useState(false);//if the enter button is pressed, then showResult is true means time to tell whether the sentence is right or wrong
 const [inputValue,setInputValue]=useState("");//tracking sentence in input field which u r writing
 const [level, setLevel]=useState(0);
 const [levelTimes, setLevelTimes] = useState([]);
@@ -208,7 +208,7 @@ const saveScoreToDB=async()=>{
   console.log("Level: ",level);
   console.log("Times per level: ",levelTimes);
    try {
-    const response = await fetch("http://127.0.0.1:8000/api/save-train", {
+    const response = await fetch("http://localhost:8000/api/save-train", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -280,11 +280,12 @@ const saveScoreToDB=async()=>{
       disabled={percentage<=0}
       onKeyDown={setEnterFunction}
     />
-    <a href='MainPanel.jsx' className='go-back-train'>Go Back</a>
+    <button onClick={onBack} className='go-back-train'>
+      Go Back
+    </button>
 
    {showResult && (
   <>
-    {/* ✅ Correct */}
     {feedback === "correct" && roundStatus === "win" && (
       <>
         <p>You Did It 🎉</p>
@@ -294,8 +295,6 @@ const saveScoreToDB=async()=>{
       </>
     )}
 
-
-     {/* ❌ Wrong (does NOT stop timer) */}
     {feedback === "wrong" && roundStatus === "playing" && (
       <p>Oops! You typed it wrong ❌</p>
     )}
