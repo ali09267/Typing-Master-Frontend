@@ -21,24 +21,25 @@ function MainPanel() {
   const audioRef=useRef(null);
 
 useEffect(() => {
-  if (!audioRef.current) {
-    const audio = new Audio("/Home_Music.mp3");
-    audio.loop = true;
-    audio.currentTime = 2;
-    audio.play().catch(err => console.log("Autoplay blocked", err));
-    audioRef.current = audio;
-  }
+  const audio = new Audio("/Home_Music.mp3");
+  audio.loop = true;
+  audio.currentTime = 2;
+  audioRef.current = audio;
+
+  const startMusic = () => {
+    audio.play().catch(() => {});
+    window.removeEventListener("click", startMusic);
+  };
+
+  window.addEventListener("click", startMusic);
 
   return () => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-      audioRef.current = null;
-    }
+    audio.pause();
+    window.removeEventListener("click", startMusic);
   };
 }, []);
 
-  //When user click any component then open that component code
+  //When the user clicks any component, it opens the component code
 
   const handleClick = (gameName) => {
     // Pause MainPanel music before switching to game
@@ -49,12 +50,15 @@ useEffect(() => {
     setShowComponent(gameName); // This triggers rendering of the new component
   };
 
-  //React forgots which component to mount after it gets refreshed so useEffect code which runs everytime whenever we refresh to tell react that these were all the prev entered names 
+
+const goBack = () => setShowComponent(null);
+
+  //React forgets which component to mount after it gets refreshed, so the useEffect code, which runs every time whenever we refresh, tells React that these were all the previously entered names 
   useEffect(() => {
-  fetch("http://127.0.0.1:8000/api/get_names")//fetching data from laravel router named get_names
-    .then(res => res.json())//convert the response which is received from laravel router into JSON format 
+  fetch("http://localhost:8000/api/get_names")//fetching data from laravel router named get_names
+    .then(res => res.json())//convert the response which is received from the Laravel router into JSON format 
     .then(data => {
-      setNames(data);//then set that data into names state variable 
+      setNames(data);//then set that data into the names state variable 
     })
     .catch(err => console.error(err));//if any error occurs print that error 
 }, []);
@@ -66,7 +70,7 @@ useEffect(() => {
     alert("New Name Added: " + name);
     setShowNameModal(false);
 
-    fetch('http://127.0.0.1:8000/api/insert', {//insert new name to the table
+    fetch('http://localhost:8000/api/insert', {//insert new name to the table
       method: 'POST',//post method to make it secret
       headers: {
         'Content-Type': 'application/json',//json format type
@@ -79,7 +83,7 @@ useEffect(() => {
       .then(res => res.json()) //  parse JSON here
       .then(data => {
         console.log(data);
-        return fetch("http://127.0.0.1:8000/api/get_names");//no need to refresh 
+        return fetch("http://localhost:8000/api/get_names");//no need to refresh 
       }
       ).then(res => res.json())
       .then(updatedNames => {
@@ -98,6 +102,7 @@ useEffect(() => {
         <select className='players-dropdown'  value={selectedPlayerId}   onChange={(e) => setSelectedPlayerId(e.target.value)}>
           
           <option value="">Select Name</option>
+          
           {names.map((item) => (
             <option key={item.id} value={item.id}>
               {item.name}
@@ -120,12 +125,16 @@ useEffect(() => {
     ) : (
       <>
 
-        {showComponent === "Free Fall" && <FreeFall key="freefall" playerId={selectedPlayerId} />}
-        {showComponent === "Fire Typing" && <Game key="fire" playerId={selectedPlayerId} />}
-        {showComponent === "Typing Train" && <TypingTrain key="train" playerId={selectedPlayerId}/>}
-        {showComponent === "One Minute Traffic" && <OneMinTraffic key="oneMin" playerId={selectedPlayerId}/>}
-        {showComponent === "Free Fall II" && <FreeFallII key="free-2" playerId={selectedPlayerId}/>}
-                {showComponent === "Leaderboard" && <Leaderboard key="leader" />}
+
+        {showComponent === "Free Fall" && (
+  <FreeFall playerId={selectedPlayerId} onBack={goBack} />
+)}
+
+        {showComponent === "Fire Typing" && <Game key="fire" playerId={selectedPlayerId} onBack={goBack} />}
+        {showComponent === "Typing Train" && <TypingTrain key="train" playerId={selectedPlayerId} onBack={goBack} />}
+        {showComponent === "One Minute Traffic" && <OneMinTraffic key="oneMin" playerId={selectedPlayerId} onBack={goBack} />}
+        {showComponent === "Free Fall II" && <FreeFallII key="free-2" playerId={selectedPlayerId} onBack={goBack} />}
+                {showComponent === "Leaderboard" && <Leaderboard key="leader"  onBack={goBack} />}
       </>
     )}
 
