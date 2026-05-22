@@ -2,21 +2,24 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import './Free-fall.css';
+import { useRef } from 'react';
 
+function FreeFallII({playerId,onBack}) {
 
-function FreeFallII({playerId,onBack}){
-
-  useEffect(()=>{
-    const audio = new Audio("/akuma.mp3"); // path from public
-    audio.loop = true; // optional: loop forever
-
-     audio.currentTime = 2.5;
-    audio.play().catch((err) => {
-      console.log("Autoplay prevented by browser:", err);
-
-
-    });
-  },[])
+  const audioRef = useRef(null);
+  useEffect(() => {
+     const audio = new Audio("/akuma.mp3"); // path from public
+     audio.loop = true; // optional: loop forever
+     audio.currentTime = 2;
+       audioRef.current = audio; 
+     audio.play().catch((err) => {
+       console.log("Autoplay prevented by browser:", err);
+     });
+       return () => {
+     audio.pause();        
+     audio.currentTime = 0;
+   };
+ }, []);
      const chars = [ 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p',
   'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l',
   'z', 'x', 'c', 'v', 'b', 'n', 'm','Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
@@ -276,8 +279,8 @@ const reset=()=>{
                         : "You are not a human being....."}</h2> 
 
                         <div className="button-wrapper">
-                           <button onClick={onBack} className='go_back'>Go Back</button>
-                           <button onClick={reset} className='play_again_btn'>Play Again</button> 
+                            <button onClick={onBack} className='go_back_2'>Go Back</button> 
+                           <button onClick={reset} className='play_again_btn_2'>Play Again</button> 
                            </div> </>}
             </>
           )}
