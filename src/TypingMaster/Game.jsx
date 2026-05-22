@@ -234,7 +234,7 @@ function renderStars(count) {
         } onKeyDown={isEnter}
         />
         <br/>
-  <button onClick={onBack}>Go Back</button>
+  <button onClick={onBack} className='go_back'>Back</button>
 
           {showResult && (
             <>
