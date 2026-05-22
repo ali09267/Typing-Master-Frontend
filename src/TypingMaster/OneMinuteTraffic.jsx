@@ -2,7 +2,7 @@ import englishWords from "./Words";
 import { useState } from "react";
 import { useEffect } from "react";
 import './OneMinuteTraffic.css';
-function OneMinTraffic({playerId}){
+function OneMinTraffic({playerId,onBack}){
 
    useEffect(()=>{
       const audio = new Audio("/one_min.mp3"); // path from public
@@ -13,13 +13,13 @@ function OneMinTraffic({playerId}){
         console.log("Autoplay prevented by browser:", err);
 
         return () => {
-    audio.pause();       // 🔴 stop music
-    audio.currentTime = 0; // 🔁 reset
+    audio.pause();       //  stop music
+    audio.currentTime = 0; // reset
   };
       });
     },[])
 
-let target=20;
+let target=60;
   const [inputValue,setInputValue]=useState("");
     const [showResult, setShowResult] = useState(false);
     const [randomItem, setRandomItem] = useState(() =>
@@ -88,7 +88,7 @@ let target=20;
 
    const saveScoreToDB = async () => {
   try {
-    const response = await fetch("http://127.0.0.1:8000/api/save-words", {
+    const response = await fetch("http://localhost:8000/api/save-words", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -166,7 +166,7 @@ useEffect(() => {
   ?"You are not just a master, you're a ninja"
  :"You are not a human being....."}
         </p>
-                        <a href='MainPanel.jsx' className="go-back">Go Back</a>
+                        <button onClick={onBack}>Go Back</button>
 
       </>
     )}
