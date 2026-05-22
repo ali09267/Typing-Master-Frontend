@@ -4,9 +4,6 @@
   z-index: 1000;
   flex-direction: column;
 }
-.one-minute-wrapper{
-    border: 2px solid firebrick;
-}
 .go-back{
     font-size: 25px;
    display: inline-block;
