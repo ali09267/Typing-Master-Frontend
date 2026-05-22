@@ -2,8 +2,9 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import './Free-fall.css';
+import { useRef } from 'react';
 
-function FreeFall({ playerId }) {
+function FreeFall({ playerId ,onBack}) {
 
   useEffect(() => {
     const audio = new Audio("/free_fall.mp3"); // path from public
@@ -37,7 +38,7 @@ function FreeFall({ playerId }) {
 
   const saveScoreToDB = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/save-score", {
+      const response = await fetch("http://localhost:8000/api/save-score", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -188,7 +189,7 @@ function FreeFall({ playerId }) {
       const updated = new Set(prev);
       updated.add(id);
 
-      setMissedBoxId(id); // ✅ Only trigger this once per id
+      setMissedBoxId(id); //Only trigger this once per id
 
       return updated;
     });
@@ -248,12 +249,12 @@ function FreeFall({ playerId }) {
                 {Array.from({ length: life }).map((_, i) => (
                   <span key={i} className="heart">❤️</span>
                 ))}
-                <p>{score}</p>
+                <p className="score">{score}</p>
               </div>
             </>
           ) : (
             <>
-                {<> <h3 className='score'> 
+                {<> <h3 className='score' > 
                   Characters Catched:-{score}
                   </h3><br></br>
                    <h2 className='feedback'>
@@ -274,8 +275,8 @@ function FreeFall({ playerId }) {
                         : "You are not a human being....."}</h2> 
 
                         <div className="button-wrapper">
-                           <a href='MainPanel.jsx'>Go Back</a> 
-                           <button onClick={reset} className='play_again_btn'>Play Again</button> 
+                           <button onClick={onBack} className='go_back'>Go Back</button> 
+                           <button onClick={reset} className='play_again_btn'>Reset</button> 
                            </div> </>}
             </>
           )}
