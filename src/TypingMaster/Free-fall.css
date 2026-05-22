@@ -1,5 +1,5 @@
 .FreeFallWrapper{
- position: fixed; 
+ position: fixed; /* 👈 Force full-screen overlay */
   top: 0;
   left: 0;
   width: 100vw;
@@ -13,7 +13,7 @@
 
 .FreeFallWrapper2{
   border: 2px solid blue;
- position: fixed; 
+ position: fixed; /* 👈 Force full-screen overlay */
   top: 0;
   left: 0;
   width: 100vw;
@@ -23,7 +23,7 @@
   background-repeat: no-repeat;
   background-position: center;
 }
-
+/* DEBUG LANES */
 .lane-debug {
   position: absolute;
   top: 0;
@@ -51,7 +51,7 @@
   font-size: 23px;
   animation: fall linear forwards;
   border-radius: 8px;
-  font-weight:550;
+  font-weight:530;
   font-family: monospace;
   color: black;
 }
@@ -63,6 +63,7 @@
   }
   100% {
     top: 100vh;
+   
   }
 }
 
