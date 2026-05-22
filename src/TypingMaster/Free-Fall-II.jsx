@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import './Free-fall.css';
 
 
-function FreeFallII({playerId}){
+function FreeFallII({playerId,onBack}){
 
   useEffect(()=>{
     const audio = new Audio("/akuma.mp3"); // path from public
@@ -41,7 +41,7 @@ function FreeFallII({playerId}){
 
   const saveScoreToDB = async () => {
   try {
-    const response = await fetch("http://127.0.0.1:8000/api/save-score-ii", {
+    const response = await fetch("http://localhost:8000/api/save-score-ii", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -181,12 +181,12 @@ useEffect(() => {
 
  const handleMissedBox = (id) => {
   setHandledBoxIds(prev => {
-    if (prev.has(id)) return prev; //  Already handled
+    if (prev.has(id)) return prev; 
 
     const updated = new Set(prev);
     updated.add(id);
 
-    setMissedBoxId(id); // ✅ Only trigger this once per id
+    setMissedBoxId(id); 
 
     return updated;
   });
@@ -200,7 +200,7 @@ const reset=()=>{
   setHandledBoxIds(new Set());
   setScoreSaved(false);
 
-  setGameKey(prev => prev + 1); // FORCE FULL RESET
+  setGameKey(prev => prev + 1); 
 }
 
     return(
@@ -246,9 +246,11 @@ const reset=()=>{
 
               <div className="life">
                 {Array.from({ length: life }).map((_, i) => (
-                  <span key={i} className="heart">❤️</span>
+                  <span key={i} className="heart" style={{ fontSize: '24px' }}>
+                    ❤️
+                  </span>
                 ))}
-                <p>{score}</p>
+                <p style={{ fontSize: '24px' }}>{score}</p>
               </div>
             </>
           ) : (
@@ -274,7 +276,7 @@ const reset=()=>{
                         : "You are not a human being....."}</h2> 
 
                         <div className="button-wrapper">
-                           <a href='MainPanel.jsx'>Go Back</a> 
+                           <button onClick={onBack} className='go_back'>Go Back</button>
                            <button onClick={reset} className='play_again_btn'>Play Again</button> 
                            </div> </>}
             </>
