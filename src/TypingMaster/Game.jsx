@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import './Game.css';
 import React from 'react';
 
-function Game({playerId}){
+function Game({playerId,onBack}){
 
   useEffect(()=>{
      const audio = new Audio("/fire_type.mp3"); // path from public
@@ -15,8 +15,8 @@ function Game({playerId}){
         console.log("Autoplay prevented by browser:", err);
 
         return () => {
-    audio.pause();       // 🔴 stop music
-    audio.currentTime = 0; // 🔁 reset
+    audio.pause();       // stop music
+    audio.currentTime = 0; // reset
   };
   })
 },[]);
@@ -181,7 +181,7 @@ function renderStars(count) {
  const saveScoreToDB = async () => {
 
   try {
-    const response = await fetch("http://127.0.0.1:8000/api/save-time", {
+    const response = await fetch("http://localhost:8000/api/save-time", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -233,7 +233,7 @@ function renderStars(count) {
         } onKeyDown={isEnter}
         />
         <br/>
-  <a href='MainPanel.jsx' className="go-back">Go Back</a>
+  <button onClick={onBack}>Go Back</button>
 
           {showResult && (
             <>
