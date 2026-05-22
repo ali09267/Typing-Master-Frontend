@@ -146,7 +146,7 @@ useEffect(() => {
         />
         <p>Score: {score}</p>
         <br/>
-                <a href='MainPanel.jsx' className="go-back">Go Back</a>
+                 <button onClick={onBack} className='go_back'>Go Back</button>
 
       </>
     ) : (
