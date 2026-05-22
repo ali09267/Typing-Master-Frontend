@@ -9,14 +9,16 @@ function FreeFall({ playerId ,onBack}) {
   useEffect(() => {
     const audio = new Audio("/free_fall.mp3"); // path from public
     audio.loop = true; // optional: loop forever
-
     audio.currentTime = 2;
+      audioRef.current = audio; 
     audio.play().catch((err) => {
       console.log("Autoplay prevented by browser:", err);
-
-
     });
-  }, [])
+      return () => {
+    audio.pause();        
+    audio.currentTime = 0;
+  };
+}, []);
   const chars = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p',
     'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l',
     'z', 'x', 'c', 'v', 'b', 'n', 'm'];//array of chars
