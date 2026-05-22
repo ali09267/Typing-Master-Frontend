@@ -5,12 +5,13 @@ import './Game.css';
 import React from 'react';
 
 function Game({playerId,onBack}){
-
+const audioRef = useRef(null);
   useEffect(()=>{
      const audio = new Audio("/fire_type.mp3"); // path from public
       audio.loop = true; // optional: loop forever
   
        audio.currentTime = 1.6;
+       audioRef.current = audio; 
       audio.play().catch((err) => {
         console.log("Autoplay prevented by browser:", err);
 
