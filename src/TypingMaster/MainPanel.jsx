@@ -21,25 +21,24 @@ function MainPanel() {
   const audioRef=useRef(null);
 
 useEffect(() => {
-  const audio = new Audio("/Home_Music.mp3");
-  audio.loop = true;
-  audio.currentTime = 2;
-  audioRef.current = audio;
-
-  const startMusic = () => {
-    audio.play().catch(() => {});
-    window.removeEventListener("click", startMusic);
-  };
-
-  window.addEventListener("click", startMusic);
+  if (!audioRef.current) {
+    const audio = new Audio("/Home_Music.mp3");
+    audio.loop = true;
+    audio.currentTime = 2;
+    audio.play().catch(err => console.log("Autoplay blocked", err));
+    audioRef.current = audio;
+  }
 
   return () => {
-    audio.pause();
-    window.removeEventListener("click", startMusic);
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+      audioRef.current = null;
+    }
   };
 }, []);
 
-  //When the user clicks any component, it opens the component code
+  //When user click any component then open that component code
 
   const handleClick = (gameName) => {
     // Pause MainPanel music before switching to game
@@ -50,15 +49,14 @@ useEffect(() => {
     setShowComponent(gameName); // This triggers rendering of the new component
   };
 
+  const goBack = () => setShowComponent(null);
 
-const goBack = () => setShowComponent(null);
-
-  //React forgets which component to mount after it gets refreshed, so the useEffect code, which runs every time whenever we refresh, tells React that these were all the previously entered names 
+  //React forgots which component to mount after it gets refreshed so useEffect code which runs everytime whenever we refresh to tell react that these were all the prev entered names 
   useEffect(() => {
   fetch("http://localhost:8000/api/get_names")//fetching data from laravel router named get_names
-    .then(res => res.json())//convert the response which is received from the Laravel router into JSON format 
+    .then(res => res.json())//convert the response which is received from laravel router into JSON format 
     .then(data => {
-      setNames(data);//then set that data into the names state variable 
+      setNames(data);//then set that data into names state variable 
     })
     .catch(err => console.error(err));//if any error occurs print that error 
 }, []);
@@ -125,18 +123,14 @@ const goBack = () => setShowComponent(null);
     ) : (
       <>
 
-
-        {showComponent === "Free Fall" && (
-  <FreeFall playerId={selectedPlayerId} onBack={goBack} />
-)}
-
-        {showComponent === "Fire Typing" && <Game key="fire" playerId={selectedPlayerId} onBack={goBack} />}
-        {showComponent === "Typing Train" && <TypingTrain key="train" playerId={selectedPlayerId} onBack={goBack} />}
-        {showComponent === "One Minute Traffic" && <OneMinTraffic key="oneMin" playerId={selectedPlayerId} onBack={goBack} />}
-        {showComponent === "Free Fall II" && <FreeFallII key="free-2" playerId={selectedPlayerId} onBack={goBack} />}
+        {showComponent === "Free Fall" && <FreeFall key="freefall" playerId={selectedPlayerId} onBack={goBack}/>}
+        {showComponent === "Fire Typing" && <Game key="fire" playerId={selectedPlayerId} onBack={goBack}/>}
+        {showComponent === "Typing Train" && <TypingTrain key="train" playerId={selectedPlayerId} onBack={goBack}/>}
+        {showComponent === "One Minute Traffic" && <OneMinTraffic key="oneMin" playerId={selectedPlayerId} onBack={goBack}/>}
+        {showComponent === "Free Fall II" && <FreeFallII key="free-2" playerId={selectedPlayerId} onBack={goBack}/>}
                 {showComponent === "Leaderboard" && <Leaderboard key="leader"  onBack={goBack} />}
       </>
-    )}
+   )}
 
 
     {showNameModal && (
