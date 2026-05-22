@@ -2,13 +2,17 @@ import englishWords from "./Words";
 import { useState } from "react";
 import { useEffect } from "react";
 import './OneMinuteTraffic.css';
+import { useRef } from 'react';
 function OneMinTraffic({playerId,onBack}){
 
+      const audioRef = useRef(null);
+  
    useEffect(()=>{
       const audio = new Audio("/one_min.mp3"); // path from public
       audio.loop = true; // optional: loop forever
   
        audio.currentTime = 2;
+       audioRef.current = audio;
       audio.play().catch((err) => {
         console.log("Autoplay prevented by browser:", err);
 
