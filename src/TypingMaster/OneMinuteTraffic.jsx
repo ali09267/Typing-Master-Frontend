@@ -2,7 +2,7 @@ import englishWords from "./Words";
 import { useState } from "react";
 import { useEffect } from "react";
 import './OneMinuteTraffic.css';
-import { useRef } from 'react';
+import { useRef } from "react";
 function OneMinTraffic({playerId,onBack}){
 
       const audioRef = useRef(null);
@@ -150,7 +150,7 @@ useEffect(() => {
         />
         <p>Score: {score}</p>
         <br/>
-                 <button onClick={onBack} className='go_back'>Go Back</button>
+                 <button onClick={onBack} className='go_back'> Back</button>
 
       </>
     ) : (
@@ -170,7 +170,7 @@ useEffect(() => {
   ?"You are not just a master, you're a ninja"
  :"You are not a human being....."}
         </p>
-                        <button onClick={onBack}>Go Back</button>
+                        <button onClick={onBack} className='go_back'>Back</button>
 
       </>
     )}
