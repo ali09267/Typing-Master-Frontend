@@ -14,12 +14,12 @@ const audioRef = useRef(null);
        audioRef.current = audio; 
       audio.play().catch((err) => {
         console.log("Autoplay prevented by browser:", err);
-
+});
         return () => {
     audio.pause();       // stop music
     audio.currentTime = 0; // reset
   };
-  })
+  
 },[]);
   
   console.log(playerId);
