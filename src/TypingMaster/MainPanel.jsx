@@ -15,19 +15,17 @@ function MainPanel() {
   const [showNameModal, setShowNameModal] = useState(false);
   const [names, setNames] = useState([]);//to track player name 
   const [selectedPlayerId, setSelectedPlayerId] = useState("");//to track player id
-
+const [entered, setEntered] = useState(false);
 
   //Music code
   const audioRef=useRef(null);
 
+// Don't auto-play in useEffect, just set up the audio object
 useEffect(() => {
-  if (!audioRef.current) {
-    const audio = new Audio("/Home_Music.mp3");
-    audio.loop = true;
-    audio.currentTime = 2;
-    audio.play().catch(err => console.log("Autoplay blocked", err));
-    audioRef.current = audio;
-  }
+  const audio = new Audio("/Home_Music.mp3");
+  audio.loop = true;
+  audio.currentTime = 2;
+  audioRef.current = audio; // just store it, don't play yet
 
   return () => {
     if (audioRef.current) {
@@ -38,6 +36,17 @@ useEffect(() => {
   };
 }, []);
 
+// handleEnter does the actual playing
+const handleEnter = () => {
+  setEntered(true); // this shows main panel
+  if (audioRef.current) {
+    audioRef.current.play().catch(err => console.log(err));
+  }
+};
+useEffect(() => {
+  window.addEventListener("keydown", handleEnter);
+  return () => window.removeEventListener("keydown", handleEnter);
+}, []);
   //When user click any component then open that component code
 
   const handleClick = (gameName) => {
@@ -91,6 +100,15 @@ useEffect(() => {
       .catch(err => console.error(err));
   };
 
+  // In your JSX, before the main panel:
+if (!entered) {
+  return (
+    <div className="splash-screen main-panel-wrapper" onClick={handleEnter} style={{ }}>
+      <h1>🎮 Typing Games</h1>
+      <p>Click anywhere to enter</p>
+    </div>
+  );
+}
   return (<>
   <div className="main-panel-wrapper">
     {!showComponent ? (
