@@ -23,13 +23,12 @@ const [feedback, setFeedback] = useState(null);
        audio.currentTime = 2;
       audio.play().catch((err) => {
         console.log("Autoplay prevented by browser:", err);
-
-        //clean up code
+      });
+         //clean up code
         return () => {
     audio.pause();       // stop music
     audio.currentTime = 0; // reset
   };
-      });
     },[])
 
     //resetting game, take 20 ms and clear the time
