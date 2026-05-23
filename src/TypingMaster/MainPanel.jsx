@@ -25,7 +25,7 @@ useEffect(() => {
   const audio = new Audio("/Home_Music.mp3");
   audio.loop = true;
   audio.currentTime = 2;
-  audioRef.current = audio; // just store it, don't play yet
+  audioRef.current = audio; // store it, don't play yet
 
   return () => {
     if (audioRef.current) {
@@ -38,21 +38,31 @@ useEffect(() => {
 
 // handleEnter does the actual playing
 const handleEnter = () => {
-  setEntered(true); // this shows main panel
+  if (entered) return;
+
+  setEntered(true);
+
   if (audioRef.current) {
     audioRef.current.play().catch(err => console.log(err));
   }
 };
+
 useEffect(() => {
-  window.addEventListener("keydown", handleEnter);
-  return () => window.removeEventListener("keydown", handleEnter);
-}, []);
-  //When user click any component then open that component code
+  if (!entered) {
+    window.addEventListener("keydown", handleEnter);
+  }
+
+  return () => {
+    window.removeEventListener("keydown", handleEnter);
+  };
+}, [entered]);
+  //When the user clicks any component, then open that component code
   const handleClick = (gameName) => {
-  // pause for ALL components including Leaderboard
+  // pause for ALL components, including Leaderboard
   if (audioRef.current) {
     audioRef.current.pause();
     audioRef.current.currentTime = 0;
+        console.log("Main music paused"); // add this
   }
   setShowComponent(gameName);
 };
