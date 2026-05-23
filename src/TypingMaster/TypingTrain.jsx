@@ -278,6 +278,7 @@ const saveScoreToDB=async()=>{
       onChange={(e) => setInputValue(e.target.value)}
       disabled={percentage<=0}
       onKeyDown={setEnterFunction}
+      autoFocus={true}
     />
     <button onClick={onBack} className='go_back'>
       Back
