@@ -1,7 +1,7 @@
 import './Leaderboard.css';
 import { useState, useEffect } from 'react';
 
-function Leaderboard() {
+function Leaderboard({onBack}) {
     const [scores, setScores] = useState([]);//to store each row of free fall leaderboard
     const [words,setWords]=useState([]);//to store each row of one minute traffic leaderboard
     const[time,setTime]=useState([]);//store each row of fire typing
@@ -9,7 +9,7 @@ function Leaderboard() {
     const[specialScore, setSpecialScore]=useState([]);
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/get_score")
+        fetch("http://localhost:8000/api/get_score")
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -19,7 +19,7 @@ function Leaderboard() {
     }, [])
 
      useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/get_words")
+        fetch("http://localhost:8000/api/get_words")
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -29,7 +29,7 @@ function Leaderboard() {
     }, [])
 
      useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/get_time")
+        fetch("http://localhost:8000/api/get_time")
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -39,7 +39,7 @@ function Leaderboard() {
     }, [])
 
     useEffect(()=>{
-      fetch("http://127.0.0.1:8000/api/get_train")
+      fetch("http://localhost:8000/api/get_train")
       .then(response=>response.json())
       .then(data=>{
         console.log(data);
@@ -50,7 +50,7 @@ function Leaderboard() {
         },[])
 
         useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/get_score_ii")
+        fetch("http://localhost:8000/api/get_score_ii")
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -61,7 +61,9 @@ function Leaderboard() {
     return (<>
     <div className="leaderboard-wrapper">
 
-             <a className='go-back' href='MainPanel.jsx'>Go Back</a>
+             <button className="go_back" onClick={onBack}>
+                Back
+             </button>
 <br/><br/>
       <h2>Free Fall Rankings</h2>
         <table className="user-table">
