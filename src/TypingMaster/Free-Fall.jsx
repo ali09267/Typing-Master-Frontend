@@ -7,8 +7,8 @@ import { useRef } from 'react';
 function FreeFall({ playerId ,onBack}) {
 const audioRef = useRef(null);
   useEffect(() => {
-    const audio = new Audio("/free_fall.mp3"); // path from public
-    audio.loop = true; // optional: loop forever
+    const audio = new Audio("/free_fall.mp3"); 
+    audio.loop = true; 
     audio.currentTime = 2;
       audioRef.current = audio; 
     audio.play().catch((err) => {
@@ -35,7 +35,7 @@ const audioRef = useRef(null);
   const [handledBoxIds, setHandledBoxIds] = useState(new Set());
   const [score, setScore] = useState(0);
   const [scoreSaved, setScoreSaved] = useState(false);
-  const [gameKey, setGameKey] = useState(0);//forces react to remount game completely by destroying all prev components when user click on play again
+  const [gameKey, setGameKey] = useState(0);//forces React to remount the game completely by destroying all previous components when the user clicks on play again
   const [gameStarted, setGameStarted] = useState(false);
 
   const saveScoreToDB = async () => {
@@ -265,7 +265,7 @@ const audioRef = useRef(null);
                        : score <= 40 ? 
                        "Your keyboard is working... are you?" 
                      : score <= 50 ?
-                      "More Imrovement Required!" 
+                      "More Improvement Required!" 
                       : score <= 60 ? 
                       "Good Typing! Practice More" 
                       : score <= 80 ? 
@@ -273,11 +273,11 @@ const audioRef = useRef(null);
                       : score <= 100 ? 
                       "Bravo! You are truly a Typing Master"
                        : score <= 150 ?
-                        "You are not just a Typing Master, You're a ninja!" 
+                        "You are not just a Typing Master, you're a ninja!" 
                         : "You are not a human being....."}</h2> 
 
                         <div className="button-wrapper">
-                           <button onClick={onBack} className='go_back'>Go Back</button> 
+                           <button onClick={onBack} className='go_back'>Back</button> 
                            <button onClick={reset} className='play_again_btn'>Reset</button> 
                            </div> </>}
             </>
