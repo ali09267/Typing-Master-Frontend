@@ -15,12 +15,11 @@ function OneMinTraffic({playerId,onBack}){
        audioRef.current = audio;
       audio.play().catch((err) => {
         console.log("Autoplay prevented by browser:", err);
-
+});
         return () => {
     audio.pause();       //  stop music
     audio.currentTime = 0; // reset
-  };
-      });
+  }; 
     },[])
 
 let target=60;
