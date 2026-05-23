@@ -48,17 +48,23 @@ useEffect(() => {
   return () => window.removeEventListener("keydown", handleEnter);
 }, []);
   //When user click any component then open that component code
-
   const handleClick = (gameName) => {
-    // Pause MainPanel music before switching to game
-  if (gameName!=='Leaderboard' && audioRef.current) {
+  // pause for ALL components including Leaderboard
+  if (audioRef.current) {
     audioRef.current.pause();
     audioRef.current.currentTime = 0;
   }
-    setShowComponent(gameName); // This triggers rendering of the new component
-  };
+  setShowComponent(gameName);
+};
 
-  const goBack = () => setShowComponent(null);
+const goBack = () => {
+  setShowComponent(null);
+  // resume music when returning to main panel
+  if (audioRef.current) {
+    audioRef.current.currentTime = 2;
+    audioRef.current.play().catch(err => console.log(err));
+  }
+};
 
   //React forgots which component to mount after it gets refreshed so useEffect code which runs everytime whenever we refresh to tell react that these were all the prev entered names 
   useEffect(() => {
@@ -103,7 +109,7 @@ useEffect(() => {
   // In your JSX, before the main panel:
 if (!entered) {
   return (
-    <div className="splash-screen main-panel-wrapper" onClick={handleEnter} style={{ }}>
+    <div className="splash-screen main-panel-wrapper" onClick={handleEnter}>
       <h1>🎮 Typing Games</h1>
       <p>Click anywhere to enter</p>
     </div>
